@@ -20,6 +20,7 @@ const showImages = (images) => {
   // show gallery title
   galleryHeader.style.display = 'flex';
   images.forEach(image => {
+    console.log(image)
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
@@ -117,9 +118,11 @@ searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
+  const searchFieldValue = search.value;
   // console.log(search.value);
-  getImages(search.value);
+  getImages(searchFieldValue);
   sliders.length = 0;
+  search.value = '';
 })
 
 sliderBtn.addEventListener('click', function () {
