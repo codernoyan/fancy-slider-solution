@@ -40,8 +40,15 @@ const getImages = (query) => {
     .catch(err => console.log(err))
 }
 
+let count = 0;
+const dotContainer = document.getElementById('dot-container');
 let slideIndex = 0;
 const selectItem = (event, img) => {
+  const span = document.createElement('span');
+  span.classList.add('dot');
+  span.setAttribute('onclick', `changeItem(${++count})`);
+  dotContainer.appendChild(span);
+  
   let element = event.target;
   element.classList.add('added');
  
@@ -68,6 +75,7 @@ const createSlider = () => {
   <span class="next" onclick="changeItem(1)"><i class="fas fa-chevron-right"></i></span>
   `;
 
+
   sliderContainer.appendChild(prevNext)
   document.querySelector('.main').style.display = 'block';
   // hide image aria
@@ -79,7 +87,7 @@ const createSlider = () => {
     item.innerHTML = `<img class="w-100"
     src="${slide}"
     alt="">`;
-    sliderContainer.appendChild(item)
+    sliderContainer.appendChild(item);
   })
   changeSlide(0)
   timer = setInterval(function () {
@@ -108,10 +116,10 @@ const changeSlide = (index) => {
   }
 
   items.forEach(item => {
-    item.style.display = "none"
+    item.style.display = "none";
   })
 
-  items[index].style.display = "block"
+  items[index].style.display = "block";
 }
 
 searchBtn.addEventListener('click', function () {
