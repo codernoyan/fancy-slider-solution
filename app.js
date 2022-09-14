@@ -46,8 +46,10 @@ let slideIndex = 0;
 const selectItem = (event, img) => {
   const span = document.createElement('span');
   span.classList.add('dot');
-  span.setAttribute('onclick', `changeItem(${++count})`);
+  span.setAttribute('onclick', `changeItem(${count++})`);
   dotContainer.appendChild(span);
+  console.log(span.parentNode.firstElementChild.setAttribute('onclick', `changeItem(${-1})`))
+  // has attribute
   
   let element = event.target;
   element.classList.add('added');
